@@ -1,20 +1,73 @@
 # ByteBites core classes:
 # Customer tracks a customer's name and purchase history.
 # FoodItem represents one menu item with name, price, category, and popularity rating.
-# Menu stores food items and helps filter/sort them.
+# Menu stores food items and helps filter them by category.
 # Transaction stores selected items for a customer and calculates the total cost.
 
 class Customer:
-    pass
+    def __init__(self, name):
+        self.name = name
+        self.purchase_history = []
+
+    def add_purchase(self, transaction):
+        self.purchase_history.append(transaction)
+
+    def get_purchase_history(self):
+        return self.purchase_history
 
 
 class FoodItem:
-    pass
+    def __init__(self, name, price, category, popularity_rating):
+        self.name = name
+        self.price = price
+        self.category = category
+        self.popularity_rating = popularity_rating
+
+    def get_name(self):
+        return self.name
+
+    def get_price(self):
+        return self.price
+
+    def get_category(self):
+        return self.category
+
+    def get_popularity_rating(self):
+        return self.popularity_rating
 
 
 class Menu:
-    pass
+    def __init__(self):
+        self.items = []
+
+    def add_item(self, item):
+        self.items.append(item)
+
+    def remove_item(self, item_name):
+        self.items = [item for item in self.items if item.name != item_name]
+
+    def get_items(self):
+        return self.items
+
+    def filter_by_category(self, category):
+        return [item for item in self.items if item.category == category]
 
 
 class Transaction:
-    pass
+    def __init__(self, customer):
+        self.customer = customer
+        self.selected_items = []
+
+    def add_item(self, item):
+        self.selected_items.append(item)
+
+    def remove_item(self, item_name):
+        self.selected_items = [
+            item for item in self.selected_items if item.name != item_name
+        ]
+
+    def get_selected_items(self):
+        return self.selected_items
+
+    def calculate_total(self):
+        return sum(item.price for item in self.selected_items)
