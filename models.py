@@ -52,6 +52,13 @@ class Menu:
     def filter_by_category(self, category):
         return [item for item in self.items if item.category == category]
 
+    def sort_by_popularity(self):
+        return sorted(
+            self.items,
+            key=lambda item: item.popularity_rating,
+            reverse=True
+        )
+
 
 class Transaction:
     def __init__(self, customer):
@@ -71,3 +78,34 @@ class Transaction:
 
     def calculate_total(self):
         return sum(item.price for item in self.selected_items)
+
+
+if __name__ == "__main__":
+    burger = FoodItem("Spicy Burger", 8.50, "Entrees", 4.8)
+    soda = FoodItem("Large Soda", 2.50, "Drinks", 4.2)
+    cookie = FoodItem("Chocolate Cookie", 3.00, "Desserts", 4.6)
+
+    menu = Menu()
+    menu.add_item(burger)
+    menu.add_item(soda)
+    menu.add_item(cookie)
+
+    print("All menu items:")
+    for item in menu.get_items():
+        print(f"- {item.name}: ${item.price:.2f}")
+
+    print("\nDessert items:")
+    for item in menu.filter_by_category("Desserts"):
+        print(f"- {item.name}")
+
+    print("\nItems sorted by popularity:")
+    for item in menu.sort_by_popularity():
+        print(f"- {item.name}: {item.popularity_rating}")
+
+    customer = Customer("Alex")
+    transaction = Transaction(customer)
+    transaction.add_item(burger)
+    transaction.add_item(soda)
+    customer.add_purchase(transaction)
+
+    print(f"\nOrder total: ${transaction.calculate_total():.2f}")
