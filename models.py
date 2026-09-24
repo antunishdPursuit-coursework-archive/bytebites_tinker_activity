@@ -1,7 +1,7 @@
 # ByteBites core classes:
 # Customer tracks a customer's name and purchase history.
 # FoodItem represents one menu item with name, price, category, and popularity rating.
-# Menu stores food items and helps filter them by category.
+# Menu stores food items, filters by category, and sorts by popularity.
 # Transaction stores selected items for a customer and calculates the total cost.
 
 class Customer:
@@ -50,9 +50,11 @@ class Menu:
         return self.items
 
     def filter_by_category(self, category):
+        """Return exact category matches without changing the menu."""
         return [item for item in self.items if item.category == category]
 
     def sort_by_popularity(self):
+        """Return items from highest to lowest popularity; keep menu order."""
         return sorted(
             self.items,
             key=lambda item: item.popularity_rating,
@@ -77,6 +79,7 @@ class Transaction:
         return self.selected_items
 
     def calculate_total(self):
+        """Sum current item prices, returning zero when no items are selected."""
         return sum(item.price for item in self.selected_items)
 
 

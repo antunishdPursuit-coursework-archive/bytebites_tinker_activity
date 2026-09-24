@@ -16,3 +16,16 @@ Finally, when a user picks items, we need to group them into a single transactio
 2. FoodItem
 3. Menu
 4. Transaction
+
+## Transaction behavior clarification
+
+A transaction may contain zero or more food items. Customers can start a
+transaction before selecting anything.
+
+- A new transaction starts with an empty item list and a total of $0.
+- Adding or removing items changes the total to the sum of the remaining
+  items' prices.
+- Removing the last item leaves a valid empty transaction with a total of $0.
+
+These rules describe item selection and total calculation. Checkout and
+payment rules are outside this activity's scope.
