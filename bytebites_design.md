@@ -101,6 +101,8 @@ python -B -m pytest -p no:cacheprovider -q
 ```
 
 The sample scenario filters Desserts, sorts popularity scores from 4.8 to 4.6
-to 4.2, and prints an order total of $11.00. The six existing tests cover
-matching and missing categories, descending and empty sorting, a multi-item
-total, and an empty total. They do not verify every possible input contract.
+to 4.2, and prints an order total of $11.00. All 12 tests pass, covering category
+filtering, popularity sorting without changing menu order, empty collections,
+changing transaction totals, last-item removal, separate transaction item
+lists, and separate customer histories. They do not verify every possible
+input contract. See [README.md](README.md) for setup and the four-part review.
