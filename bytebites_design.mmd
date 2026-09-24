@@ -1,0 +1,47 @@
+classDiagram
+    direction TB
+
+    class Customer {
+        +str name
+        +list~Transaction~ purchase_history
+        +\_\_init\_\_(name)
+        +add_purchase(transaction)
+        +get_purchase_history() list~Transaction~
+    }
+
+    class FoodItem {
+        +str name
+        +float price
+        +str category
+        +float popularity_rating
+        +\_\_init\_\_(name, price, category, popularity_rating)
+        +get_name() str
+        +get_price() float
+        +get_category() str
+        +get_popularity_rating() float
+    }
+
+    class Menu {
+        +list~FoodItem~ items
+        +\_\_init\_\_()
+        +add_item(item)
+        +remove_item(item_name)
+        +get_items() list~FoodItem~
+        +filter_by_category(category) list~FoodItem~
+        +sort_by_popularity() list~FoodItem~
+    }
+
+    class Transaction {
+        +Customer customer
+        +list~FoodItem~ selected_items
+        +\_\_init\_\_(customer)
+        +add_item(item)
+        +remove_item(item_name)
+        +get_selected_items() list~FoodItem~
+        +calculate_total() float
+    }
+
+    Customer --> Transaction : purchase_history (0..*)
+    Menu --> FoodItem : items (0..*)
+    Transaction --> Customer : customer (1)
+    Transaction --> FoodItem : selected_items (0..*)

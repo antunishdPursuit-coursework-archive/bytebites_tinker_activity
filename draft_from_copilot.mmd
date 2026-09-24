@@ -1,11 +1,3 @@
-# ByteBites UML Class Diagram
-
-This is the initial, unreviewed AI draft, preserved for comparison. Its
-Mermaid source is [draft_from_copilot.mmd](draft_from_copilot.mmd). Use
-[bytebites_design.mmd](bytebites_design.mmd) for the final design aligned
-with the specification and Python implementation.
-
-```mermaid
 classDiagram
     class Customer {
         -String name
@@ -50,13 +42,3 @@ classDiagram
     Menu "1" --> "0..*" FoodItem : contains
     Transaction "1" --> "1" Customer : belongs to
     Transaction "1" --> "1..*" FoodItem : includes
-```
-
-## Class Summary
-
-| Class | Responsibility |
-| --- | --- |
-| `Customer` | Stores customer identity and purchase history so the app can verify real users. |
-| `FoodItem` | Represents one menu item with name, price, category, and popularity rating. |
-| `Menu` | Manages the collection of available food items and supports category filtering. |
-| `Transaction` | Groups selected food items for a customer and calculates the total cost. |
